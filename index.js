@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
+const cors = require('cors'); // Import the cors middleware
 const authRoutes = require('./routes/auth');
 const assignmentRoutes = require('./routes/assignments');
 const submissionRoutes = require('./routes/submissions');
@@ -11,10 +12,11 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.use(cors()); // Enable CORS for all origins
 app.use(bodyParser.json());
 
 app.get('/',(req, res) => {
-    res.send.json({message: 'Welcome to the Backend'});
+    res.json({message: 'Welcome to the Backend'}); // Changed send.json to json
 })
 app.use('/auth', authRoutes);
 app.use('/assignments', assignmentRoutes);
