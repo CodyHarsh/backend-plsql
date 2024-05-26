@@ -13,6 +13,9 @@ const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
+app.get('/',(req, res) => {
+    res.send.json({message: 'Welcome to the Backend'});
+})
 app.use('/auth', authRoutes);
 app.use('/assignments', assignmentRoutes);
 app.use('/submissions', submissionRoutes);
